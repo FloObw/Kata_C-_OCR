@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Kata_OCR
 {
-    class character
+    class Character
     {
     }
 }

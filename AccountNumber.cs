@@ -7,15 +7,15 @@ namespace Kata_OCR
 {
     class AccountNumber
     {
-        private character[] orgData = new character[9];
+        private Character[] orgData = new Character[9];
 
-        public void addCharacter (character character)
+        public void addCharacter (Character character)
         {
             int arrLength = this.orgData.Length;
             this.orgData[arrLength + 1] = character;
         }
 
-        public character[] getOrgData ()
+        public Character[] getOrgData ()
         {
             return this.orgData;
         }
