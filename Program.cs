@@ -6,7 +6,8 @@ namespace Kata_OCR
 {
     class Program
     {
-     
+        private static AccountNumber accountNumber;    
+ 
         static void Main(string[] args)
         {
             string file = @"\\192.168.10.2\Nas-Home\Software\Allgemein\Visual Studio\Visual Studio 2012\Kata_OCR\Kata_ORC\SampleData\sample.txt";
@@ -17,31 +18,51 @@ namespace Kata_OCR
             string fileLine;
             int lineCounter = 0;
             var combinedNumber = new Dictionary<int, string>() ;
-            
-            while((fileLine = sReader.ReadLine()) != null)
+
+            int accountNumberLength = 9;
+            int count = 1;
+            while((fileLine = sReader.ReadLine()) != null /*&&  count < 7*/ )
             {
-                    
+                count++;
                 if(fileLine.Length > 0){
+                    //replace \n\r
+                    fileLine = fileLine.Replace(System.Environment.NewLine, string.Empty);
                     if (lineCounter == 0)
                     {
-                        AccountNumber accountNumber = new AccountNumber();
+                        accountNumber = new AccountNumber();
                     }
-                    Console.WriteLine(fileLine + lineCounter);
+                     // loop beginns from end to assign correct
+                    for (var i = 0 ; i < accountNumberLength; i++)
+                    {
+                        //split line into parts
+                        string subpart = fileLine.Substring(i * 3, 3);
+
+                        //On first line create digit and ad it to accountnumber
+                        if (lineCounter == 0)
+                        {
+                            Digit digit = new Digit();
+                            digit.addString(lineCounter, subpart);                           
+                            accountNumber.addDigit(i, digit);
+                        }
+                        else
+                        {
+                            accountNumber.getDigitByIndex(i).addString(lineCounter,subpart);
+                        }
+                    }
                     lineCounter++;
                 }
-                else{
-                    
+                else{   
                     lineCounter = 0;
+                    //Begin to evaluate accountNumber 
+                    Console.WriteLine(accountNumber.getNumber());
+                    
                 }
              
             }
-            Console.WriteLine(fileLine);                 
+            //Console.WriteLine(fileLine);                 
             sReader.Close();
             Console.Read();
         }
 
-
-
-        public static string fileLine { get; set; }
     }
 }

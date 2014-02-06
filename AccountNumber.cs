@@ -7,17 +7,54 @@ namespace Kata_OCR
 {
     class AccountNumber
     {
-        private Character[] orgData = new Character[9];
+        private Digit[] orgData = new Digit[9];
+        
+        private Boolean isValidChecksum = false;
 
-        public void addCharacter (Character character)
+        private Boolean isreadable = true;
+    
+        private string accountNumber = "";
+    
+        private List <string> accountNumberAsArray ;
+    
+        private List <string> possibleAccountNumbers;
+    
+        public string[] possibleReplacer = new string [6] {
+            " _ ",
+            " _|",
+            "|_ ",
+            "|_|",
+            "| |",
+            "  |"
+        };
+
+        public string getNumber()
         {
-            int arrLength = this.orgData.Length;
-            this.orgData[arrLength + 1] = character;
+            string number = "";
+            foreach(Digit digit in this.orgData){
+                number = number + digit.getAsNumber();
+            }
+            return number; 
         }
 
-        public Character[] getOrgData ()
+        public void addDigit(int position , Digit digit)
+        {
+            this.orgData[position] = digit;
+        }
+
+        public Digit getDigitByIndex(int index)
+        {
+            return this.orgData[index];
+        }
+
+        public Digit[] getOrgData ()
         {
             return this.orgData;
+        }
+
+        internal void add(object p)
+        {
+            throw new NotImplementedException();
         }
     }
 }
