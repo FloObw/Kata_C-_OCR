@@ -1,1 +1,0 @@
-\\192.168.10.2\Nas-Home\Software\Allgemein\Visual Studio\Visual Studio 2012\Kata_ORC\Kata_ORC\bin\Debug\Kata_ORC.exe.config

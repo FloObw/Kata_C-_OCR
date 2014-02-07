@@ -1,6 +1,0 @@
-\\192.168.10.2\nas-home\Software\Allgemein\Visual Studio\Visual Studio 2012\Kata_OCR\Kata_ORC\bin\Release\Kata_ORC.exe.config
-\\192.168.10.2\Nas-Home\Software\Allgemein\Visual Studio\Visual Studio 2012\Kata_OCR\Kata_ORC\bin\Release\Kata_ORC.exe
-\\192.168.10.2\Nas-Home\Software\Allgemein\Visual Studio\Visual Studio 2012\Kata_OCR\Kata_ORC\bin\Release\Kata_ORC.pdb
-\\192.168.10.2\Nas-Home\Software\Allgemein\Visual Studio\Visual Studio 2012\Kata_OCR\Kata_ORC\obj\Release\Kata_ORC.exe
-\\192.168.10.2\Nas-Home\Software\Allgemein\Visual Studio\Visual Studio 2012\Kata_OCR\Kata_ORC\obj\Release\Kata_ORC.pdb
-\\192.168.10.2\Nas-Home\Software\Allgemein\Visual Studio\Visual Studio 2012\Kata_OCR\Kata_ORC\obj\Release\Kata_OCR.csprojResolveAssemblyReference.cache
