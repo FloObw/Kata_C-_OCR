@@ -10,7 +10,7 @@ namespace Kata_OCR
  
         static void Main(string[] args)
         {
-            string file = @"..\..SampleData\sample.txt";
+            string file = @"..\..\SampleData\sample.txt";
             
             System.IO.StreamReader sReader = new System.IO.StreamReader(file);
 
