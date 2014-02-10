@@ -10,7 +10,7 @@ namespace Kata_OCR
  
         static void Main(string[] args)
         {
-            string file = @"\\192.168.10.2\Nas-Home\Software\Allgemein\Visual Studio\Visual Studio 2012\Kata_OCR\Kata_ORC\SampleData\sample.txt";
+            string file = @"..\..\SampleData\sample.txt";
             
             System.IO.StreamReader sReader = new System.IO.StreamReader(file);
 
