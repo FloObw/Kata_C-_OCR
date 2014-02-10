@@ -15,16 +15,16 @@ namespace Kata_OCR
         {
             // Create and return new Hashtable.
             Hashtable hashtable = new Hashtable();
-            hashtable.Add("Area", 1);
-            hashtable.Add("Perimeter", 2);
-            hashtable.Add("Mortgage", 3);
-            hashtable.Add("Area", 4);
-            hashtable.Add("Perimeter", 5);
-            hashtable.Add("Mortgage", 6);
-            hashtable.Add("Area", 7);
-            hashtable.Add("Perimeter", 8);
-            hashtable.Add("Mortgage", 9);
-            hashtable.Add("Mortgage", 0);
+            hashtable.Add("     |  |", 1);
+            hashtable.Add(" _  _||_ ", 2);
+            hashtable.Add(" _  _| _|", 3);
+            hashtable.Add("   |_|  |", 4);
+            hashtable.Add(" _ |_  _|", 5);
+            hashtable.Add(" _ |_ |_|", 6);
+            hashtable.Add(" _   |  |", 7);
+            hashtable.Add(" _ |_||_|", 8);
+            hashtable.Add(" _ |_| _|", 9);
+            hashtable.Add(" _ | ||_|", 0);
             return hashtable;
         }
         
@@ -43,9 +43,9 @@ namespace Kata_OCR
             return val;
         }
 
-        public int getAsNumber()
+        public string getAsNumber()
         {
-            return this.getAsString().GetHashCode();
+            return this.getAsString();
         }
     }
 }
