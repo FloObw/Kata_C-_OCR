@@ -11,10 +11,15 @@ namespace Kata_OCR
     {
         private string[] digitAsArray = new string[3];
 
-        static Hashtable GetHashtable()
+        private string number;
+
+        private Boolean isReadable = true;
+
+        static Hashtable hashtable;
+        public Digit()
         {
             // Create and return new Hashtable.
-            Hashtable hashtable = new Hashtable();
+            hashtable = new Hashtable();
             hashtable.Add("     |  |", 1);
             hashtable.Add(" _  _||_ ", 2);
             hashtable.Add(" _  _| _|", 3);
@@ -25,7 +30,6 @@ namespace Kata_OCR
             hashtable.Add(" _ |_||_|", 8);
             hashtable.Add(" _ |_| _|", 9);
             hashtable.Add(" _ | ||_|", 0);
-            return hashtable;
         }
         
         public void addString(int lineCounter, string subpart)
@@ -43,9 +47,25 @@ namespace Kata_OCR
             return val;
         }
 
+        public Boolean getReadableState()
+        {
+            return this.isReadable;
+        }
+
         public string getAsNumber()
         {
-            return this.getAsString();
-        }
+            string digitasNumber = this.getAsString();
+            if (hashtable.ContainsKey(digitasNumber))
+            {
+                this.number = hashtable[digitasNumber].ToString();
+                this.isReadable = true;
+            }
+            else
+            {
+                this.number = "?";
+                this.isReadable = false;
+            }
+            return this.number;
+        }    
     }
 }

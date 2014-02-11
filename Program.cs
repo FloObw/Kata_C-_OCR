@@ -53,8 +53,15 @@ namespace Kata_OCR
                 }
                 else{   
                     lineCounter = 0;
+                    string additionalState = "";
                     //Begin to evaluate accountNumber 
-                    Console.WriteLine(accountNumber.getNumber());
+                    accountNumber.checkDigit();
+                    if (accountNumber.isReadable() == false)
+                    {
+                        additionalState = "  ILL";
+                    }
+                    Console.WriteLine(accountNumber.getNumber() + additionalState);
+                    
                     
                 }
              

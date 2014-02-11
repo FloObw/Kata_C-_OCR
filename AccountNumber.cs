@@ -12,11 +12,9 @@ namespace Kata_OCR
         private Boolean isValidChecksum = false;
 
         private Boolean isreadable = true;
-    
-        private string accountNumber = "";
-    
-        private List <string> accountNumberAsArray ;
-    
+
+        private string number;
+        
         private List <string> possibleAccountNumbers;
     
         public string[] possibleReplacer = new string [6] {
@@ -27,19 +25,50 @@ namespace Kata_OCR
             "| |",
             "  |"
         };
-
+        /*
+         * Return combined digits in account number
+         * 
+         * */
         public string getNumber()
         {
-            string number = "";
             foreach(Digit digit in this.orgData){
-                number = number + digit.getAsNumber();
+                this.number = number +  digit.getAsNumber();
             }
-            return number; 
+            return this.number; 
+        }
+
+        public Boolean isReadable()
+        {
+            return this.isreadable;
+        }
+
+
+        public Array getAccountNumberAsArray()
+        {
+            return this.orgData;
         }
 
         public void addDigit(int position , Digit digit)
         {
             this.orgData[position] = digit;
+            digit.getAsNumber();
+        }
+
+        public void checkDigit()
+        {
+            foreach (Digit digit in this.orgData)
+            {
+                digit.getAsNumber();
+                if (digit.getReadableState() == false)
+                {
+                    this.isreadable = false;
+                }
+            }
+        }
+
+        public void checkIsValidChecksum()
+        {
+            
         }
 
         public Digit getDigitByIndex(int index)
@@ -50,11 +79,6 @@ namespace Kata_OCR
         public Digit[] getOrgData ()
         {
             return this.orgData;
-        }
-
-        internal void add(object p)
-        {
-            throw new NotImplementedException();
         }
     }
 }
