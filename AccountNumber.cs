@@ -31,10 +31,15 @@ namespace Kata_OCR
          * */
         public string getNumber()
         {
-            foreach(Digit digit in this.orgData){
-                this.number = number +  digit.getAsNumber();
-            }
             return this.number; 
+        }
+
+        public void prepareNumber()
+        {
+            foreach (Digit digit in this.orgData)
+            {
+                this.number += digit.getAsNumber();
+            }
         }
 
         public Boolean isReadable()
@@ -54,8 +59,9 @@ namespace Kata_OCR
             digit.getAsNumber();
         }
 
-        public void checkDigit()
+        public void check()
         {
+
             foreach (Digit digit in this.orgData)
             {
                 digit.getAsNumber();
@@ -64,11 +70,40 @@ namespace Kata_OCR
                     this.isreadable = false;
                 }
             }
+            this.checkIsValidChecksum(this.number);
         }
 
-        public void checkIsValidChecksum()
+        public void checkIsValidChecksum(string accountNumber)
+        {            
+            string numberAsString = accountNumber;
+            int[] numberArray = numberAsString.ToCharArray().Select(x => (int)Char.GetNumericValue(x)).ToArray();
+
+            int checksumAdd = 0;
+            int tempCounter = numberArray.Length;
+            for (int i = 0; i < numberArray.Length; i++)
+            {
+                if (i == 0)
+                {
+                    checksumAdd = numberArray[i];
+                }
+                else
+                {
+                    checksumAdd = checksumAdd  * (numberArray[i] + tempCounter);
+                    tempCounter-- ;
+                }
+            }
+
+            //Check modulo %11 
+            if ((checksumAdd % 11) == 0)
+            {
+                this.isValidChecksum = true;               
+            }           
+        }
+
+
+        public Boolean getIsValidChecksum ()
         {
-            
+            return this.isValidChecksum;
         }
 
         public Digit getDigitByIndex(int index)

@@ -55,12 +55,21 @@ namespace Kata_OCR
                     lineCounter = 0;
                     string additionalState = "";
                     //Begin to evaluate accountNumber 
-                    accountNumber.checkDigit();
+                    accountNumber.prepareNumber();
+                    accountNumber.check();
+                    String number = accountNumber.getNumber();
                     if (accountNumber.isReadable() == false)
                     {
                         additionalState = "  ILL";
                     }
-                    Console.WriteLine(accountNumber.getNumber() + additionalState);
+                    else
+                    {
+                        if (accountNumber.getIsValidChecksum() == false)
+                        {
+                            additionalState = "  ERR";
+                        }
+                    }
+                    Console.WriteLine(number + additionalState);
                     
                     
                 }
