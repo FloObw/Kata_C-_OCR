@@ -15,11 +15,11 @@ namespace Kata_OCR
 
         private Boolean isReadable = true;
 
-        static Hashtable hashtable;
+        static Dictionary<string, int> hashtable;
         static Digit()
         {
             // Create and return new Hashtable.
-            hashtable = new Hashtable();
+            hashtable = new Dictionary<string,int>();
             hashtable.Add("     |  |", 1);
             hashtable.Add(" _  _||_ ", 2);
             hashtable.Add(" _  _| _|", 3);
@@ -75,7 +75,7 @@ namespace Kata_OCR
             string digitasNumber = this.getAsString();
             if (hashtable.ContainsKey(digitasNumber))
             {
-                number = (int)hashtable[digitasNumber];
+                number = hashtable[digitasNumber];
                 return true;
             }
             else
