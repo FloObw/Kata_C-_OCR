@@ -15,11 +15,11 @@ namespace Kata_OCR
 
         private Boolean isReadable = true;
 
-        static Hashtable hashtable;
-        public Digit()
+        static Dictionary<string, int> hashtable;
+        static Digit()
         {
             // Create and return new Hashtable.
-            hashtable = new Hashtable();
+            hashtable = new Dictionary<string,int>();
             hashtable.Add("     |  |", 1);
             hashtable.Add(" _  _||_ ", 2);
             hashtable.Add(" _  _| _|", 3);
@@ -47,11 +47,13 @@ namespace Kata_OCR
             return val;
         }
 
+        [Obsolete("Please use TryGetNumber")]
         public Boolean getReadableState()
         {
             return this.isReadable;
         }
 
+        [Obsolete("Please use TryGetNumber")]
         public string getAsNumber()
         {
             string digitasNumber = this.getAsString();
@@ -67,5 +69,20 @@ namespace Kata_OCR
             }
             return this.number;
         }    
+
+        public bool TryGetNumber(out int number)
+        {
+            string digitasNumber = this.getAsString();
+            if (hashtable.ContainsKey(digitasNumber))
+            {
+                number = hashtable[digitasNumber];
+                return true;
+            }
+            else
+            {
+                number = -1;
+                return false;
+            }
+        }
     }
 }
