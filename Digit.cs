@@ -47,11 +47,13 @@ namespace Kata_OCR
             return val;
         }
 
+        [Obsolete("Please use TryGetNumber")]
         public Boolean getReadableState()
         {
             return this.isReadable;
         }
 
+        [Obsolete("Please use TryGetNumber")]
         public string getAsNumber()
         {
             string digitasNumber = this.getAsString();
