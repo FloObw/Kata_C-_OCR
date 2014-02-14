@@ -16,7 +16,7 @@ namespace Kata_OCR
         private Boolean isReadable = true;
 
         static Hashtable hashtable;
-        public Digit()
+        static Digit()
         {
             // Create and return new Hashtable.
             hashtable = new Hashtable();
