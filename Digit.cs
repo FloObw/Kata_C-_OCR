@@ -67,5 +67,20 @@ namespace Kata_OCR
             }
             return this.number;
         }    
+
+        public bool TryGetNumber(out int number)
+        {
+            string digitasNumber = this.getAsString();
+            if (hashtable.ContainsKey(digitasNumber))
+            {
+                number = (int)hashtable[digitasNumber];
+                return true;
+            }
+            else
+            {
+                number = -1;
+                return false;
+            }
+        }
     }
 }
