@@ -38,7 +38,16 @@ namespace Kata_OCR
         {
             foreach (Digit digit in this.orgData)
             {
-                this.number += digit.getAsNumber();
+                int number;
+                if (digit.TryGetNumber(out  number))
+                {
+                    this.number += number.ToString();
+                }
+                else
+                {
+                    this.number += '?';
+                }
+                
             }
         }
 
@@ -56,7 +65,6 @@ namespace Kata_OCR
         public void addDigit(int position , Digit digit)
         {
             this.orgData[position] = digit;
-            digit.getAsNumber();
         }
 
         public void check()
@@ -64,8 +72,8 @@ namespace Kata_OCR
 
             foreach (Digit digit in this.orgData)
             {
-                digit.getAsNumber();
-                if (digit.getReadableState() == false)
+                int number;
+                if (digit.TryGetNumber(out number) == false)
                 {
                     this.isreadable = false;
                 }
@@ -80,17 +88,10 @@ namespace Kata_OCR
 
             int checksumAdd = 0;
             int tempCounter = numberArray.Length;
-            for (int i = 0; i < numberArray.Length; i++)
+            for (int i = tempCounter; i > 0; i--)
             {
-                if (i == 0)
-                {
-                    checksumAdd = numberArray[i];
-                }
-                else
-                {
-                    checksumAdd = checksumAdd  * (numberArray[i] + tempCounter);
-                    tempCounter-- ;
-                }
+                int tempNumber = numberArray[tempCounter - i];
+                checksumAdd += i * tempNumber;
             }
 
             //Check modulo %11 

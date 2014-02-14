@@ -14,12 +14,14 @@ namespace Kata_OCR.Tests
         [InlineData(new[] { " _ ", "| |", "|_|" }, 0)]
         [InlineData(new[] { "   ", "  |", "  |" }, 1)]
         [InlineData(new[] { " _ ", " _|", "|_ " }, 2)]
+
         public void TestValidNumber(string[] input, int expected)
         {
             var digit = BuildDigit(input);
-            string number = digit.getAsNumber();
+            int numberAsInt;
+            bool isReadable =  digit.TryGetNumber(out numberAsInt);
+            string number = numberAsInt.ToString();
             Assert.Equal(expected.ToString(), number);
-            bool isReadable = digit.getReadableState();
             Assert.Equal(true, isReadable);
         }
 
@@ -37,14 +39,15 @@ namespace Kata_OCR.Tests
         }
 
         [Theory]
-        [InlineData(new[] { "   ", "   ", "   " }, "?")]
-        [InlineData(new[] { "   ", " _|", "  |" }, "?")]
+        [InlineData(new[] { "   ", "   ", "   " }, "-1")]
+        [InlineData(new[] { "   ", " _|", "  |" }, "-1")]
         public void TestInvalidNumber(string[] input, string expected)
         {
             var digit = BuildDigit(input);
-            string number = digit.getAsNumber();
+            int numberAsInt;
+            bool isReadable = digit.TryGetNumber(out numberAsInt);
+            string number = numberAsInt.ToString();
             Assert.Equal(expected, number);
-            bool isReadable = digit.getReadableState();
             Assert.Equal(false, isReadable);
         }
 

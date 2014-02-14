@@ -70,10 +70,7 @@ namespace Kata_OCR
                         }
                     }
                     Console.WriteLine(number + additionalState);
-                    
-                    
                 }
-             
             }
             //Console.WriteLine(fileLine);                 
             sReader.Close();
