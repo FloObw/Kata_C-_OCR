@@ -61,6 +61,8 @@ namespace Kata_OCR
                     if (accountNumber.isReadable() == false)
                     {
                         additionalState = "  ILL";
+                        Recombiner possibleAccount = new Recombiner(accountNumber);
+                        possibleAccount.tryChangeAndEvaluate(out additionalState);
                     }
                     else
                     {

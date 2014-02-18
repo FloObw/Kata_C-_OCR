@@ -43,6 +43,11 @@ namespace Kata_OCR
             return val;
         }
 
+        public Array getAsArray()
+        {
+            return this.digitAsArray;
+        }
+
         public bool TryGetNumber(out int number)
         {
             string digitasNumber = this.getAsString();
