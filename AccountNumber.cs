@@ -14,8 +14,8 @@ namespace Kata_OCR
         private Boolean isreadable = true;
 
         private string number;
-        
-        private List <string> possibleAccountNumbers;
+
+        private List<string> possibleAccountNumbers = new List<string>();
     
         public string[] possibleReplacer = new string [6] {
             " _ ",
@@ -115,6 +115,17 @@ namespace Kata_OCR
         public Digit[] getOrgData ()
         {
             return this.orgData;
+        }
+
+        public List <string> getPossibleAccountNumbers()
+        {
+            return this.possibleAccountNumbers;
+        }
+
+        public void addPossibleRefactoredNumber(string toTestAccountnumber)
+        {
+            this.possibleAccountNumbers.Add(toTestAccountnumber);
+            this.isValidChecksum = true;         
         }
     }
 }

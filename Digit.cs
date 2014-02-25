@@ -27,7 +27,12 @@ namespace Kata_OCR
             hashtable.Add(" _ |_| _|", 9);
             hashtable.Add(" _ | ||_|", 0);
         }
-        
+
+        public Dictionary<string,int> gethashtable()
+        {            
+            return hashtable;
+        }
+
         public void addString(int lineCounter, string subpart)
         {
             this.digitAsArray[lineCounter] = subpart;

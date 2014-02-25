@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Kata_OCR
@@ -10,20 +9,17 @@ namespace Kata_OCR
  
         static void Main(string[] args)
         {
-            string file = @"..\..\SampleData\sample.txt";
+            string filename = "sample.txt";
+            string folder = System.IO.Directory.GetCurrentDirectory();
+            System.IO.StreamReader sReader = new System.IO.StreamReader(folder+"..\\..\\..\\SampleData\\" + filename);
             
-            System.IO.StreamReader sReader = new System.IO.StreamReader(file);
-
-
             string fileLine;
             int lineCounter = 0;
             var combinedNumber = new Dictionary<int, string>() ;
 
             int accountNumberLength = 9;
-            int count = 1;
-            while((fileLine = sReader.ReadLine()) != null /*&&  count < 7*/ )
+            while((fileLine = sReader.ReadLine()) != null )
             {
-                count++;
                 if(fileLine.Length > 0){
                     //replace \n\r
                     fileLine = fileLine.Replace(System.Environment.NewLine, string.Empty);
@@ -58,23 +54,31 @@ namespace Kata_OCR
                     accountNumber.prepareNumber();
                     accountNumber.check();
                     String number = accountNumber.getNumber();
-                    if (accountNumber.isReadable() == false)
+                    if (accountNumber.isReadable() == false || accountNumber.getIsValidChecksum() == false)
                     {
-                        additionalState = "  ILL";
                         Recombiner possibleAccount = new Recombiner(accountNumber);
-                        possibleAccount.tryChangeAndEvaluate(out additionalState);
-                    }
-                    else
-                    {
-                        if (accountNumber.getIsValidChecksum() == false)
+                        accountNumber = possibleAccount.tryChangeAndEvaluate();
+                        //If now is readable Accountnumber
+                        if (accountNumber.isReadable() &&  accountNumber.getIsValidChecksum())
                         {
-                            additionalState = "  ERR";
+                            //Set The number whith new Data
+                            number = accountNumber.getPossibleAccountNumbers()[0];
+                            //remove first
+                            accountNumber.getPossibleAccountNumbers().RemoveAt(0);
+                            additionalState = " AMB " + string.Join(" ", accountNumber.getPossibleAccountNumbers().ToArray());
                         }
-                    }
+                        else if(accountNumber.isReadable() == false){
+                            additionalState = " ILL";
+                        }
+                        else if (accountNumber.getIsValidChecksum() == false)
+                        {
+                            additionalState = " ERR";
+                        }
+                    }                    
                     Console.WriteLine(number + additionalState);
                 }
             }
-            //Console.WriteLine(fileLine);                 
+            Console.WriteLine(fileLine);                 
             sReader.Close();
             Console.Read();
         }
