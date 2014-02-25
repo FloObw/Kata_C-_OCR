@@ -30,7 +30,7 @@ namespace Kata_OCR.Tests
         public void TestValidLinesAmount(string line, Boolean expected)
         {
             int numLines = line.Split('\\').Length;
-            Assert.Equal(expected, numLines % 3 == 0);
+            Assert.Equal(expected, numLines);
         }
 
         [Theory]
@@ -38,7 +38,7 @@ namespace Kata_OCR.Tests
         public void TestInvalidLinesAmount(string line, Boolean expected)
         {
              int numLines = line.Split('\\').Length;
-             Assert.NotEqual(expected, numLines % 3 == 0);
+             Assert.NotEqual(expected, numLines);
         }
 
     }

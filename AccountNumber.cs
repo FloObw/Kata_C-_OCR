@@ -81,7 +81,7 @@ namespace Kata_OCR
             this.checkIsValidChecksum(this.number);
         }
 
-        public void checkIsValidChecksum(string accountNumber)
+        public Boolean checkIsValidChecksum(string accountNumber)
         {            
             string numberAsString = accountNumber;
             int[] numberArray = numberAsString.ToCharArray().Select(x => (int)Char.GetNumericValue(x)).ToArray();
@@ -97,8 +97,10 @@ namespace Kata_OCR
             //Check modulo %11 
             if ((checksumAdd % 11) == 0)
             {
-                this.isValidChecksum = true;               
-            }           
+                this.isValidChecksum = true;
+                return true;
+            }
+            return false;
         }
 
 
@@ -125,7 +127,6 @@ namespace Kata_OCR
         public void addPossibleRefactoredNumber(string toTestAccountnumber)
         {
             this.possibleAccountNumbers.Add(toTestAccountnumber);
-            this.isValidChecksum = true;         
         }
     }
 }

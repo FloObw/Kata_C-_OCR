@@ -61,11 +61,15 @@ namespace Kata_OCR
                         //If now is readable Accountnumber
                         if (accountNumber.isReadable() &&  accountNumber.getIsValidChecksum())
                         {
-                            //Set The number whith new Data
-                            number = accountNumber.getPossibleAccountNumbers()[0];
-                            //remove first
-                            accountNumber.getPossibleAccountNumbers().RemoveAt(0);
-                            additionalState = " AMB " + string.Join(" ", accountNumber.getPossibleAccountNumbers().ToArray());
+                            if (accountNumber.getPossibleAccountNumbers().Count == 1)
+                            {
+                                //Set The number whith new Data
+                                number = accountNumber.getPossibleAccountNumbers()[0];
+                            }
+                            else if (accountNumber.getPossibleAccountNumbers().Count > 0)
+                            {
+                                additionalState = " AMB ['" + string.Join("', '", accountNumber.getPossibleAccountNumbers().ToArray()) + "']";
+                            }
                         }
                         else if(accountNumber.isReadable() == false){
                             additionalState = " ILL";

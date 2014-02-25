@@ -42,26 +42,20 @@ namespace Kata_OCR
                         }
                     }
 
+                    //if something found
                     if (equalsAmount == 8)
                     {
                         nearestNumberInt = hashDigit.Value;
                         foundPossibleDigit = true;
+                        string toTestAccountnumber = this.accountNumber.getNumber();
+
+                        toTestAccountnumber = UtillityHelper.replaceAt(toTestAccountnumber, digitPosition, nearestNumberInt.ToString()[0]);
+                        //try checksum of new accountnumber
+                        if (this.accountNumber.checkIsValidChecksum(toTestAccountnumber))
+                        {
+                            this.accountNumber.addPossibleRefactoredNumber(toTestAccountnumber);
+                        }
                     }                    
-                }
-
-                //if something found
-                if (foundPossibleDigit)
-                {
-                    string toTestAccountnumber = this.accountNumber.getNumber();
-                    
-                    toTestAccountnumber = UtillityHelper.replaceAt(toTestAccountnumber, digitPosition, nearestNumberInt.ToString()[0]);
-
-                    //try checksum of new accountnumber
-                    this.accountNumber.checkIsValidChecksum(toTestAccountnumber);
-                    if (this.accountNumber.isReadable() && this.accountNumber.getIsValidChecksum())
-                    {
-                        this.accountNumber.addPossibleRefactoredNumber(toTestAccountnumber);                        
-                    }
                 }
                 digitPosition++; 
             }
